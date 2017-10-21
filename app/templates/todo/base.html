@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="{{ url_for('static',filename='bootstrap/css/bootstrap.min.css') }}">
+
+  <title>{% block title%}Tasks{% endblock %}</title>
+
+</head>
+
+<body>
+<nav class="navbar navbar-default">
+
+  <div class="container">
+
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="{{url_for('todo.index')}}" >Tasks</a>
+    </div>
+    {% block navbar_nav%}
+    <div class="collapse navbar-collapse" id="navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="{{url_for('todo.index')}}">TSquare<span class="sr-only">(current)</span></a></li>
+        <li><a href="{{url_for('todo.mytasks')}}">MyTasks</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        {%if current_user.is_authenticated%}
+        <li><a href="">{{current_user.user_name}}</a></li>
+        <li><a href="/register">注册</a></li>
+         <li><a href="/logout">注销</a></li>
+        {%else%}
+        <li><a href="/login">登录</a></li>
+        <li><a href="/register">注册</a></li>
+        {% endif%}
+      </ul>
+    </div>
+    {% endblock%}
+
+  </div>
+</nav>
+
+<div class="container" >
+
+    <div class="row">
+      <div class="col-md-8 ">
+        {% for message in get_flashed_messages() %}
+        <div class="alert alert-warning">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            {{message}}
+        </div>
+    {% endfor %}
+{% block main_content%}
+
+{% endblock %}
+      </div>
+      <div class="col-md-3 col-md-offset-1 hidden-xs hidden-sm" >
+        {%if current_user.is_authenticated%}
+      <div class="page-header">
+         <h1> <img src="{{current_user.gravatar(120)}}" >
+            <small> {{current_user.user_name}}</small>
+         </h1>
+      </div>
+      <div>
+        <p>注册时间：{{moment(current_user.member_since).format('LL')}}</p>
+        <p>任务小计：{{current_user.tasks.count()}}</p>
+        <p><a href="/logout">注销</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/cpasswd">修改密码</a></p>
+
+      </div>
+
+        {%else%}
+          <form  method="post" action="{{url_for('auth.login')}}">
+
+            <div class="form-group">
+              <label for="InputEmail1">电子邮箱</label>
+              <input type="email" class="form-control" id="InputEmail1" placeholder="Email" name="email" required>
+            </div>
+            <div class="form-group">
+              <label for="IPassword1">密码</label>
+              <input type="password" class="form-control" id="IPassword1" placeholder="Password" name="password" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary ">登录</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="/register">没有账号？点我注册</a>
+          </form>
+        {% endif%}
+      </div>
+    </div>
+</div>
+
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script src="{{ url_for('static',filename='bootstrap/js/bootstrap.min.js') }}"></script>
+<script src="https://vuejs.org/js/vue.min.js"></script>
+{{moment.include_moment()}}
+{{moment.lang('zh-cn')}}
+{% block script%}
+{% endblock %}
+</body>
+</html>
+
+

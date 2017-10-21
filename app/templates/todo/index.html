@@ -1,0 +1,96 @@
+{% extends "todo/base.html" %}
+
+
+{% block main_content %}
+
+
+<div id="app" >
+    <div class="media" v-for="task in tasks">
+      <div class="media-left">
+        <a href="#">
+          <img class="media-object" v-bind:src="task.user_gravatar" >
+        </a>
+      </div>
+      <div class="media-body">
+        <a class="media-heading"  v-text="task.user_name"></a><span v-if="task.finished" class="glyphicon glyphicon-ok pull-right" aria-hidden="true" style="color:lightgreen;" ></span>
+          <span v-if="!task.finished" class="glyphicon glyphicon-pushpin pull-right" aria-hidden="true" style="color:red;"></span>
+          <h4 v-text="task.summary"></h4>
+      </div>
+</div>
+
+
+
+<nav aria-label="Page navigation">
+  <ul class="pagination" >
+        <li v-bind:class="{disabled:!has_prev}">
+      <a aria-label="Previous" v-if="has_prev" @click="getPage('/todo/shared',page-1,$event)">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+      <span v-if="!has_prev">
+        <span aria-hidden="true">&laquo;</span>
+      </span>
+    </li>
+        <li v-for="iter_page in iter_pages" v-bind:class="{active:iter_page==page,disabled:iter_page==null}" @click="getPage('/todo/shared',iter_page,$event)">
+            <a href="#"  v-if="iter_page" v-text="iter_page"></a>
+            <span  v-else-if="iter_page==null">...</span>
+        </li>
+      <li v-bind:class="{disabled:!has_next}">
+      <a  aria-label="Next" v-if="has_next" @click="getPage('/todo/shared',page+1,$event)">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+       <span v-if="!has_next">
+        <span aria-hidden="true">&raquo;</span>
+      </span>
+
+    </li>
+  </ul>
+
+</nav>
+
+</div>
+{% endblock%}
+{% block script%}
+<script>
+    var data={
+        tasks:[],
+        page:'',
+        prev_num : '',
+        next_num : '',
+        has_next:'',
+        has_prev:'',
+        pages:'',
+        iter_pages:[]
+    };
+
+
+
+    function getPage(view,page,event){
+                if (page==null){
+                    return;
+                }
+
+                $.getJSON(view+'?page='+page,function (result) {
+                    data.tasks=result['tasks'];
+                    data.page=result['page'];
+                    data.prev_num=result['prev_num'];
+                    data.next_num=result['next_num'];
+                    data.has_next=result['has_next'];
+                    data.has_prev=result['has_prev'];
+                    data.pages=result['pages'];
+                    data.iter_pages=result['iter_pages']
+                })
+            }
+
+    getPage('/todo/shared',1);
+
+    var app=new Vue({
+        el:"#app",
+        data:data,
+        methods:{
+            getPage:getPage
+
+        }
+    });
+
+</script>
+{% endblock %}
