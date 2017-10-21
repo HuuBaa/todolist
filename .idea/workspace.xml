@@ -5,28 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6fd7879b-98a7-4c7c-b18c-05b56a1aa9d6" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/auth/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/auth/errors.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/auth/forms.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/auth/views.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/auth/login.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/auth/register.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/todo/base.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/todo/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/todo/mytasks.html" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/templates/base.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/templates/todo/todolist.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/migrations/README" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/migrations/alembic.ini" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/migrations/env.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/migrations/script.py.mako" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data-development.sqlite" afterPath="$PROJECT_DIR$/data-development.sqlite" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/__init__.py" afterPath="$PROJECT_DIR$/app/__init__.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models.py" afterPath="$PROJECT_DIR$/app/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/todo/views.py" afterPath="$PROJECT_DIR$/app/todo/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config.py" afterPath="$PROJECT_DIR$/config.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage.py" afterPath="$PROJECT_DIR$/manage.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -114,8 +93,8 @@
       <file leaf-file-name="base.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/templates/todo/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="243">
-              <caret line="9" column="30" lean-forward="false" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
+            <state relative-caret-position="297">
+              <caret line="11" column="7" lean-forward="true" selection-start-line="11" selection-start-column="7" selection-end-line="11" selection-end-column="7" />
               <folding>
                 <element signature="e#1919#1926#1" expanded="true" />
                 <element signature="e#2498#2504#0" expanded="true" />
@@ -867,8 +846,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/todo/base.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="9" column="30" lean-forward="false" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
+        <state relative-caret-position="297">
+          <caret line="11" column="7" lean-forward="true" selection-start-line="11" selection-start-column="7" selection-end-line="11" selection-end-column="7" />
           <folding>
             <element signature="e#1919#1926#1" expanded="true" />
             <element signature="e#2498#2504#0" expanded="true" />
