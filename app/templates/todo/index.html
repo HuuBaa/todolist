@@ -12,8 +12,8 @@
         </a>
       </div>
       <div class="media-body">
-        <a class="media-heading"  v-text="task.user_name"></a><span v-if="task.finished" class="glyphicon glyphicon-ok pull-right" aria-hidden="true" style="color:lightgreen;" ></span>
-          <span v-if="!task.finished" class="glyphicon glyphicon-pushpin pull-right" aria-hidden="true" style="color:red;"></span>
+        <a class="media-heading"  v-text="task.user_name"></a> <span class="label label-warning pull-right" v-if="!task.finished">待完成</span>
+   <span class="label label-info pull-right" v-if="task.finished">已完成</span>
           <h4 v-text="task.summary"></h4>
       </div>
 </div>
@@ -31,7 +31,7 @@
       </span>
     </li>
         <li v-for="iter_page in iter_pages" v-bind:class="{active:iter_page==page,disabled:iter_page==null}" @click="getPage('/todo/shared',iter_page,$event)">
-            <a href="#"  v-if="iter_page" v-text="iter_page"></a>
+            <a href="javascript:void(0)"  v-if="iter_page" v-text="iter_page"></a>
             <span  v-else-if="iter_page==null">...</span>
         </li>
       <li v-bind:class="{disabled:!has_next}">

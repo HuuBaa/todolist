@@ -15,7 +15,7 @@ def login():
         if user is not None and user.verify_password(password):
             login_user(user,True)
             flash('登录成功!')
-            return redirect(url_for('todo.index'))
+            return redirect(url_for('todo.mytasks'))
         else:
             flash('账号、密码错误!')
             return redirect(url_for('auth.login'))

@@ -19,11 +19,94 @@
 {% endblock%}
 
 {% block main_content %}
+{% if current_user.is_authenticated%}
 
 
+<div id="app" >
+    <input type="text" class="form-control" placeholder="待办事项" v-model="create_task">
+<br>
+<button class="btn btn-default pull-right " @click="postTask">添加&nbsp;<span class="glyphicon glyphicon-plus"></span></button>
+    <br>
+    <br>
+    <ul class="nav nav-pills nav-justified">
+  <li role="presentation" id="unfinished"><a @click="getPage('/todo/mytask',0)">待办 <span class="badge" v-text="unfinished_count"></span></a></li>
+  <li role="presentation" id="finished"><a @click="getPage('/todo/mytask',1)">已完成 <span class="badge" v-text="finished_count"></span></a></li>
+</ul>
+    <br>
+<div class="panel panel-success"  v-for="task in tasks">
+
+  <div class="panel-body" v-text="task.summary">
+
+  </div>
+<div class="panel-footer ">
+    <span class="label label-warning" v-if="!task.finished">待完成 <span class="glyphicon glyphicon-pushpin"></span></span>
+   <span class="label label-info" v-if="task.finished">已完成 <span class="glyphicon glyphicon-ok"></span></span>
+
+   <span class="label label-success " v-if="!task.share">分享<span class="glyphicon glyphicon-share-alt"></span></span>
+    <span class="label label-warning" v-if="task.share">取消分享<span class="glyphicon glyphicon-ban-circle"></span></span>
+    <span class="label label-danger pull-right">删除<span class="glyphicon glyphicon-remove"></span></span></div>
+
+</div>
+
+
+
+</div>
+{% endif %}
 {% endblock%}
 
 {% block script%}
+<script>
+
+var data={
+    create_task:"",
+    tasks:[],
+    finished_count:0,
+    unfinished_count:0
+};
+
+
+function getPage(view,finished,event){
+
+    $.getJSON(view+'?finished='+finished,function (result) {
+        data.tasks=result['tasks'];
+        data.unfinished_count=result['unfinished_count'];
+        data.finished_count=result['finished_count'];
+    })
+    if (finished==0){
+        $('#unfinished').addClass("active" );
+        $('#finished').removeClass("active");
+    }else if(finished==1){
+        $('#unfinished').removeClass("active" );
+        $('#finished').addClass("active");
+    }
+}
+
+getPage('/todo/mytask',0);
+
+var app=new Vue({
+    el:"#app",
+    data:data,
+    methods: {
+        postTask: function () {
+            $.ajax({
+                  type: "post",
+                  dataType: 'json',
+                  url: '/todo/createtask',
+                  contentType: 'application/json',
+                  data: JSON.stringify({'create_task':this.create_task}),
+                  success: function (d) {
+                      if (d.status = 'ok') {
+                          getPage('/todo/mytask',0);
+                      }
+                  }
+            });
+        },
+        getPage:getPage
+    }
+});
+
+</script>
+
 
 {% endblock %}
 

@@ -38,6 +38,7 @@ class Tasks(db.Model):
 
     def to_json(self):
         json_task={
+            'id':self.id,
             'summary':self.summary,
             'post_time':self.post_time,
             'share':self.share,
