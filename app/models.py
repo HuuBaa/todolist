@@ -9,7 +9,7 @@ from werkzeug.security import generate_password_hash,check_password_hash
 class Tasks(db.Model):
     __tablename__ = 'tasks'
     id = db.Column(db.Integer, primary_key=True)
-    summary = db.Column(db.String(64), nullable=False)
+    summary = db.Column(db.Text, nullable=False)
     finished = db.Column(db.Boolean, default=False)
     share = db.Column(db.Boolean, default=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))

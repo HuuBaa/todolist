@@ -7,13 +7,13 @@
 <div id="app" >
     <div class="media" v-for="task in tasks">
       <div class="media-left">
-        <a href="#">
+        <a :href="'/user/'+task.user_id">
           <img class="media-object" v-bind:src="task.user_gravatar" >
         </a>
       </div>
       <div class="media-body">
-        <a class="media-heading"  v-text="task.user_name"></a> <span class="label label-warning pull-right" v-if="!task.finished">待完成</span>
-   <span class="label label-info pull-right" v-if="task.finished">已完成</span>
+        <a class="media-heading"  v-text="task.user_name" :href="'/user/'+task.user_id"></a> <span class="label label-warning pull-right" v-if="!task.finished">待办</span>
+   <span class="label label-info pull-right" v-if="task.finished">完成</span>
           <h4 v-text="task.summary"></h4>
       </div>
 </div>
