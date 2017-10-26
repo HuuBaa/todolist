@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="{{ url_for('static',filename='bootstrap/css/bootstrap.min.css') }}">
 
-  <title>{% block title%}Tasks{% endblock %}</title>
+  <title>{% block title%}ToDo{% endblock %}</title>
 
 </head>
 
@@ -23,17 +23,17 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="{{url_for('todo.index')}}" >Tasks</a>
+      <a class="navbar-brand" href="{{url_for('todo.index')}}" >ToDo</a>
     </div>
     {% block navbar_nav%}
     <div class="collapse navbar-collapse" id="navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li class="active"><a href="{{url_for('todo.index')}}">TSquare<span class="sr-only">(current)</span></a></li>
-        <li><a href="{{url_for('todo.mytasks')}}">MyTasks</a></li>
+        <li><a href="{{url_for('todo.mytasks')}}">MyTodo</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         {%if current_user.is_authenticated%}
-        <li><a href="">{{current_user.user_name}}</a></li>
+        <li><a href="{{'/user/'+current_user.id|string}}">{{current_user.user_name}}</a></li>
         <li><a href="/register">注册</a></li>
          <li><a href="/logout">注销</a></li>
         {%else%}
@@ -97,7 +97,7 @@
 
 <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
 <script src="{{ url_for('static',filename='bootstrap/js/bootstrap.min.js') }}"></script>
-<script src="https://vuejs.org/js/vue.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
 {{moment.include_moment()}}
 {{moment.lang('zh-cn')}}
 {% block script%}
