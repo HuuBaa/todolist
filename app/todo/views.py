@@ -33,7 +33,6 @@ def todo_shared():
 
 
 @todo.route('/mytasks')
-
 def mytasks():
     return render_template('todo/mytasks.html')
 
